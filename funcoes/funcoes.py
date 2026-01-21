@@ -13,17 +13,20 @@ def controleGeral():
 
                 case "1":
                     adicionarTarefas(atividades)
-                    print(atividades)
                 
                 case "2":
                     listarTarefas(atividades)
+
+                case "3":
+                    marcarConluida(atividades)
 
                 case _:
                     print("Escolha uma alternativa válida")
 
     except KeyboardInterrupt:
         print("\nInterrompendo Sistema.")
-        sleep(1)
+        linha()
+        sleep(0.5)
         return
 
 
@@ -31,19 +34,21 @@ def adicionarTarefas(ativiades):
 
     while True:
     
-        descrição = str(input("Qual a descrição da tarefa: "))
+        tarefa = str(input("Digite uma tarefa: "))
 
-        if not descrição:
+        if not tarefa or tarefa.isdigit():
             linha()
-            print("Não é aceito descrição em branco")
-            linha()
-            sleep(1)
+            print("Não é aceito descrição EM BRANCO ou NÚMEROS!!!")
+            sleep(0.5)
             
         else:
             ativiades.update({
-                "Descrição": descrição,
-                "Concluída": False
+                "Tarefa": tarefa,
+                "Conluída?": False
                 })
+            
+            linha()
+            sleep(0.5)
             return ativiades
 
 def listarTarefas(atividades):
@@ -51,8 +56,13 @@ def listarTarefas(atividades):
     linha()
     print("As suas atividades até  momento são: ")
     
-    for des, ativ in range (atividades):
-        print(f"{des} - {ativ}")
-        sleep(1)
-        return
+    for des, ativ in atividades.items():
+        print(f"{des}: - {ativ}")
         
+    return
+
+def marcarConluida(atividades):
+
+    for des, ativ in atividades.items():
+        print(f"{des} - {ativ}")
+        linha(0.5)

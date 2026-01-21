@@ -7,12 +7,9 @@ def menuInicio():
     linha()
     print("Seja Bem-Vindo".center(40))
     linha()
-    sleep(1)
+    sleep(0.5)
 
 def menuPrincipal():
-
-    menuInicio()
-    sleep(1)
 
     print("1 - Criar Tarefa")
     print("2 - Listar Tarefas")
