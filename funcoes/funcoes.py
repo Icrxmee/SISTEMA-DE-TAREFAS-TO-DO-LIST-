@@ -42,7 +42,7 @@ def adicionarTarefas(ativiades):
         else:
             ativiades.append({
                 "Tarefa": tarefa,
-                "Conluída?": False
+                "Concluída": False
                 })
             
             linha()
@@ -63,27 +63,35 @@ def listarTarefas(atividades):
 
 def marcarConluida(atividades):
 
+    if not atividades:
+        print("Nenhuma atividade salva até o momento.")
+        sleep(0.5)
+        return
+    
     for i, tarefa in enumerate(atividades):
         print(f"{i+1} - {tarefa}")
         linha()
         sleep (0.5)
-    
+
     while True:
-        
-        mudar = int(input("Qual atividade deseja marcar como CONCLUÍDA: "))
-        sleep(5.0)
+            
+        try:
+            mudar = int(input("Qual tarefa deseja marcar como CONCLUÍDA: "))
+            sleep(0.5)
 
-        if not mudar or mudar >= len(atividades):
-            print("Por favor escreva uma opção válida!!!")
+            if not mudar:
+                print("Por favor escreva uma opção válida!!!")
+                sleep(0.5)
 
-        
+            elif mudar-1 >= len(atividades) or mudar < 1:
+                print("Por favor escreva uma opção válida!!!")
+                continue
 
-
-        
-        
-
-
-
+            atividades[mudar-1]["Concluída"] = True
+                
+            print("Atividade atualizada com sucesso!!!")
+            sleep(0.5)
+            return
     
-
-    
+        except ValueError:
+            print("Digite apenas números")
