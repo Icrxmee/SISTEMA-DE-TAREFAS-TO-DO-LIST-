@@ -1,10 +1,8 @@
 from interfacee.interface import *
 
 def controleGeral():
-
-    atividades = {}
-
     try:
+        atividades = []
         
         while True:
             
@@ -42,7 +40,7 @@ def adicionarTarefas(ativiades):
             sleep(0.5)
             
         else:
-            ativiades.update({
+            ativiades.append({
                 "Tarefa": tarefa,
                 "Conluída?": False
                 })
@@ -54,15 +52,38 @@ def adicionarTarefas(ativiades):
 def listarTarefas(atividades):
 
     linha()
-    print("As suas atividades até  momento são: ")
+    print("Suas tarefas: ")
     
-    for des, ativ in atividades.items():
-        print(f"{des}: - {ativ}")
+    for i, tarefa in enumerate(atividades):
+        print(f"{i+1} - {tarefa}")
+        linha()
+        sleep(0.5)
         
     return
 
 def marcarConluida(atividades):
 
-    for des, ativ in atividades.items():
-        print(f"{des} - {ativ}")
-        linha(0.5)
+    for i, tarefa in enumerate(atividades):
+        print(f"{i+1} - {tarefa}")
+        linha()
+        sleep (0.5)
+    
+    while True:
+        
+        mudar = int(input("Qual atividade deseja marcar como CONCLUÍDA: "))
+        sleep(5.0)
+
+        if not mudar or mudar >= len(atividades):
+            print("Por favor escreva uma opção válida!!!")
+
+        
+
+
+        
+        
+
+
+
+    
+
+    
