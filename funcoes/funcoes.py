@@ -17,7 +17,15 @@ def controleGeral():
 
                 case "3":
                     marcarConluida(atividades)
-
+                
+                case "4":
+                    removerTarefa(atividades)
+                
+                case "0":
+                    print("Saindo do Sistema.")
+                    sleep(0.5)
+                    return
+                
                 case _:
                     print("Escolha uma alternativa válida")
 
@@ -95,3 +103,36 @@ def marcarConluida(atividades):
     
         except ValueError:
             print("Digite apenas números")
+
+def removerTarefa(atividades):
+
+    if not atividades:
+        print("Nenhuma atividade salva até o momento.")
+        sleep(0.5)
+        return
+    
+    for i, tarefa in enumerate(atividades):
+        print(f"{i+1} - {tarefa}")
+        linha()
+        sleep (0.5)
+
+    while True:
+
+        try:
+        
+            remover = int(input("Digite qual tarefa deseja remover: "))
+
+            if not remover:
+                print("Por favor escreva uma opção válida!!!")
+                sleep(0.5)
+
+            elif remover-1 >= len(atividades) or remover < 1:
+                print("Por favor escreva uma opção válida!!!")
+                sleep(0.5)
+                continue
+            
+            atividades.pop(remover-1)
+            return atividades
+        
+        except ValueError:
+            print("Por favor escreva apenas números!!!")
